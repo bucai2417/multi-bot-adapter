@@ -1,0 +1,10 @@
+interface:
+  display_name: "Multi-Bot Adapter"
+  short_description: "QQ 官方 Bot 与微信 wxclaw 多渠道接入：扫码、收发、媒体、语音与排错"
+  icon_small: "./assets/icon-512.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#0EA5E9"
+  default_prompt: "使用 $multi-bot-adapter 按适配器契约接入这个消息渠道：先读 references/protocol-cheatsheet.md，再按对应渠道 reference 实现，并给出测试清单。"
+
+policy:
+  allow_implicit_invocation: true

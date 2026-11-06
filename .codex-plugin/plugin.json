@@ -1,0 +1,38 @@
+{
+  "name": "multi-bot-adapter",
+  "version": "1.0.0",
+  "description": "Multi-channel chat bot adapters for QQ official Bot and WeChat wxclaw / iLink Bot: QR-code login, AppID/ClientSecret and bot token authentication, WebSocket gateway and long-polling intake, text and rich-media send/receive, voice reply, artifact delivery, admin commands, scheduled push, channel runtime, and protocol troubleshooting.",
+  "author": {
+    "name": "bucai2417"
+  },
+  "keywords": [
+    "qqbot",
+    "qq-bot",
+    "wxclaw",
+    "ilink",
+    "wechat",
+    "chatbot",
+    "adapter",
+    "webhook",
+    "websocket",
+    "long-polling",
+    "qr-login",
+    "rich-media",
+    "voice-reply",
+    "message-channel",
+    "agent-framework"
+  ],
+  "skills": "./",
+  "interface": {
+    "displayName": "Multi-Bot Adapter",
+    "shortDescription": "QQ official Bot and WeChat wxclaw channel integration with QR login, media, voice, and troubleshooting",
+    "longDescription": "A complete adapter contract and two reference implementations for multi-channel chat bots. Covers QQ official Bot (WebSocket gateway, AccessToken refresh, passive reply msg_id, Markdown, file_info media upload, native voice) and WeChat wxclaw / iLink Bot (AuthorizationType headers, getupdates long polling, context_token, AES-ECB media upload and download, multi-account token backfill), plus shared channel runtime behavior: sessions, inbound files, artifacts, voice fallback, admin commands, scheduled push, and status reporting.",
+    "developerName": "bucai2417",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Integrate this messaging channel using the adapter contract and validate the protocol edge cases.",
+      "Debug why the wxclaw channel returns -14 or why QQ group replies are rejected."
+    ]
+  }
+}
