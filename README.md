@@ -1,6 +1,7 @@
 # multi-bot-adapter
 
 ![version](https://img.shields.io/badge/version-1.0.0-0EA5E9)
+![release](https://github.com/bucai2417/multi-bot-adapter/actions/workflows/release.yml/badge.svg)
 
 <img src="assets/icon-512.png" alt="icon" width="96" height="96">
 
@@ -47,6 +48,7 @@ multi-bot-adapter/
 ├── SKILL.md                          # 入口：何时用、架构、接入流程、必守不变量
 ├── README.md
 ├── CHANGELOG.md
+├── .github/workflows/release.yml     # tag 触发：校验、打包、创建 GitHub Release
 ├── agents/openai.yaml                # 平台展示配置
 ├── .codex-plugin/plugin.json         # Codex 插件元数据
 ├── assets/
@@ -54,6 +56,7 @@ multi-bot-adapter/
 │   ├── icon-512.png                  # 平台展示图标（512）
 │   ├── icon-256.png
 │   └── icon-128.png
+├── scripts/package_skill.py          # 本地与 CI 共用的打包脚本
 ├── tools/make_icon.py                # 本地矢量图标生成脚本（可复现/改色）
 └── references/
     ├── qqbot-integration.md          # QQ 全量接入指南
@@ -107,22 +110,53 @@ $multi-bot-adapter 按适配器契约接入这个新渠道，并给出测试清�
 
 ---
 
-## 打包与分发
+## 打包与发布
 
-本仓库配套 `package_skill.py`（位于上一级目录）：
-
-```bash
-cd D:/Python/开发/游戏/skill开发
-python package_skill.py --src multi-bot-adapter --out dist
-```
-
-产出 `.skill`（Claud 平台）、`.zip`（通用）和 `codex-plugin/`（Codex 插件布局）。
-
-只校验：
+### 本地打包
 
 ```bash
-python package_skill.py --src multi-bot-adapter --check-only
+# 只校验
+python scripts/package_skill.py --check-only
+
+# 生成 dist/
+python scripts/package_skill.py --out dist
 ```
+
+产出：
+
+| 文件 | 用途 |
+|---|---|
+| `multi-bot-adapter-1.0.0.skill` | Claud / Claud Code 技能包（zip，SKILL.md 在根） |
+| `multi-bot-adapter-1.0.0.zip` | 通用分发包 |
+| `multi-bot-adapter-1.0.0-codex-plugin.zip` | Codex 插件布局（`.codex-plugin/` + `skills/`） |
+| `sha256sums.txt` | 校验和 |
+
+### 发布新版本
+
+1. 修改 `SKILL.md` 的 `version`，同步 `.codex-plugin/plugin.json` 与 `CHANGELOG.md`。
+2. 提交并推送：
+   ```bash
+   git add .
+   git commit -m "chore: release v1.2.3"
+   git push origin main
+   ```
+3. 打 tag 并推送，工作流会自动校验并发布：
+   ```bash
+   git tag v1.2.3
+   git push origin v1.2.3
+   ```
+
+工作流（`.github/workflows/release.yml`）会：
+
+- 校验 tag（`v1.2.3`）与 `SKILL.md` 版本一致
+- 跑 `scripts/package_skill.py --check-only`
+- 构建 `.skill`、`.zip`、Codex 插件包和 `sha256sums.txt`
+- 上传为 workflow artifact
+- 创建或更新 GitHub Release，并把所有包作为 Release 资产
+
+也可以手动触发：Actions → Release → Run workflow，填入已存在的 tag。
+
+> tag 与 `SKILL.md` 版本不一致时工作流会直接失败，避免发错版本。
 
 ---
 

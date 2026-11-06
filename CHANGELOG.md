@@ -23,6 +23,14 @@
 - `tools/make_icon.py` — 本地矢量图标生成脚本，可复现、可改色，不依赖外部服务。
 - `README.md` — 安装、使用、目录结构、打包说明。
 
+### 工程化
+
+- `scripts/package_skill.py` — 本地与 CI 共用的打包脚本：校验 frontmatter、
+  构建 `.skill` / `.zip` / Codex 插件包，并生成 `sha256sums.txt`。
+- `.github/workflows/release.yml` — 推送 `v*` tag 或手动触发时，校验 tag 与
+  `SKILL.md` 版本一致，自动打包并创建 / 更新 GitHub Release。
+- `.gitignore` — 忽略 `dist/`、缓存与临时文件。
+
 ### 基线
 
 内容对齐以下已跑通实现：
