@@ -39,6 +39,7 @@ REQUIRED_FILES = (
     "SKILL.md",
     "README.md",
     "CHANGELOG.md",
+    "LICENSE",
     "agents/openai.yaml",
     ".codex-plugin/plugin.json",
     "assets/icon-512.png",

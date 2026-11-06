@@ -2,6 +2,7 @@
   "name": "multi-bot-adapter",
   "version": "1.0.0",
   "description": "Multi-channel chat bot adapters for QQ official Bot and WeChat wxclaw / iLink Bot: QR-code login, AppID/ClientSecret and bot token authentication, WebSocket gateway and long-polling intake, text and rich-media send/receive, voice reply, artifact delivery, admin commands, scheduled push, channel runtime, and protocol troubleshooting.",
+  "license": "Apache-2.0",
   "author": {
     "name": "bucai2417"
   },
